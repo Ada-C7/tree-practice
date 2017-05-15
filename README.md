@@ -68,15 +68,77 @@ end
 ## Binary Search Trees
 On paper, create a binary search tree (without balancing) adding the following elements in the order provided
 1. `1, 4, 5, 2, 9`
+1
+  \
+    4
+  /   \
+2      5
+         \
+           9  
 2. `40, -2, 7, 17, 58, 0`
-3. `0, -1, 1`
+      40
+    /    \
+  -2     58
+    \
+     7
+    /  \
+   0   17
 
+3. `0, -1, 1`
+   0
+ /   \
+-1    1
 Then create these trees in [`tree-practice.rb`](tree-practice.rb)
 
 ## Pseudocode new tree methods
 1. Write a method to find the smallest element in a binary search tree.
+  Algorithm find_smalest(node)
+    set current to node
+    while current.left is not nil
+      current = current.left
+    end
+    return current.value
+  end
+
+
 2. Write a method that returns whether or not a given value exists in the tree.
+Algorithm search(value)
+  if value == self.value
+    return true
+  elsif value < self.value
+    if self.left == nil
+      return false
+    else
+      return self.left.search(value)
+    end
+  elsif value > self.value
+    if self.right == nil
+      return false
+    else
+      return self.right.search(value)
+    end
+  end
+  return false  
+end
+
+
 3. Write a method that determines if a tree is [balanced](https://webdocs.cs.ualberta.ca/~holte/T26/balanced-trees.html) or not.
+Algorithm is_balanced?(root)
+  foreach node in root
+    if (get_height(node.left) - get_height(node.right)).abs > 1
+      return false
+    end  
+  end
+  return false
+end
+
+Algorithm get_height(node)
+  if node == nil
+    return 0
+  end
+  return (MAX(get_height.node.left, get_height.node.right) + 1)  
+end
+
 
 ## Code
 1. Code out solutions for problems 1 and 2 above
